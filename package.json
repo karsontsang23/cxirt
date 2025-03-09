@@ -1,0 +1,103 @@
+{
+    "name": "ai-assistant",
+    "displayName": "AI Assistant",
+    "description": "AI 助手擴充程式",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:ai-assistant.chat"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "configuration": {
+            "title": "AI Assistant",
+            "properties": {
+                "aiAssistant.provider": {
+                    "type": "string",
+                    "enum": [
+                        "openrouter",
+                        "anthropic",
+                        "openai",
+                        "google",
+                        "aws",
+                        "azure",
+                        "vertex",
+                        "custom"
+                    ],
+                    "default": "openrouter",
+                    "description": "選擇 AI 供應商"
+                },
+                "aiAssistant.apiKey": {
+                    "type": "string",
+                    "default": "",
+                    "description": "API 金鑰"
+                },
+                "aiAssistant.model": {
+                    "type": "string",
+                    "default": "",
+                    "description": "選擇模型 (留空使用預設)"
+                },
+                "aiAssistant.endpoint": {
+                    "type": "string",
+                    "default": "",
+                    "description": "自定義 API 端點 (留空使用預設)"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "ai-assistant.chat",
+                "title": "開啟 AI 助手"
+            },
+            {
+                "command": "ai-assistant.updateModels",
+                "title": "更新 OpenRouter 模型列表"
+            },
+            {
+                "command": "ai-assistant.launchBrowser",
+                "title": "啟動瀏覽器"
+            },
+            {
+                "command": "ai-assistant.closeBrowser",
+                "title": "關閉瀏覽器"
+            },
+            {
+                "command": "ai-assistant.takeScreenshot",
+                "title": "截取瀏覽器螢幕截圖"
+            },
+            {
+                "command": "ai-assistant.createMCPTool",
+                "title": "創建 MCP 工具"
+            },
+            {
+                "command": "ai-assistant.createSnapshot",
+                "title": "創建工作區快照"
+            },
+            {
+                "command": "ai-assistant.listSnapshots",
+                "title": "查看工作區快照"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts"
+    },
+    "dependencies": {
+        "axios": "^1.6.2",
+        "puppeteer": "^21.5.0"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.60.0",
+        "@types/node": "^14.14.37",
+        "typescript": "^4.3.5",
+        "@types/axios": "^0.14.0"
+    }
+} 
